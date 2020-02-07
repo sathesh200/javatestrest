@@ -1,5 +1,6 @@
 package com.example.TestWebService;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -15,12 +16,15 @@ public class TestWebServiceApplication {
 		SpringApplication.run(TestWebServiceApplication.class, args);
 	}
 
-
+	@Value("${app.Environment}")
+	private String name;
 
 	@GetMapping("/Test")
 	public String Test()
 	{
-		return "Test Method";
+		String environment = name;
+
+		return String.format("Test Method. Environment=%s",name);
 	}
 
 
